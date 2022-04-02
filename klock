@@ -107,14 +107,14 @@ else unset DDATE; fi
 # Swatch .beat
 # One '.beat' is equivalent to 1 decimal minute (French Decimal Time)
 # Meridian set to Biel Mean Time (equiv. to CET with no daylight savings)
-swatchH=$(TZ=Africa/Casablanca date +%H)
-swatchM=$(TZ=Africa/Casablanca date +%M)
+swatchH=$(date -ud"+1 hour" +%H)
+swatchM=$(date +%M)
 swatchS=$(date +%S)
 
 swatch=$(echo "($swatchS + ($swatchM * 60) + ($swatchH * 3600) ) / 86.4" |bc)
 
 # main()
-[ $DDATE ] && printf "%-16s YOLD %d " "${discord::${#discord}-5}" ${discord:(-4)}
+[ $DDATE ] && printf "%s YOLD %d " "${discord::${#discord}-5}" ${discord:(-4)}
 
 # Klock
 displaytime() {
